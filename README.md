@@ -6,7 +6,6 @@ Desenvolver um segundo serviço de despacho das mercadorias que a cada minuto fa
 
 
 ### Requisitos técnicos
-- Os serviços devem ser feitos usando Quarkus;
+- Os serviços devem ser feitos utilizando [Quarkus](https://quarkus.io);
 - Criar as APIs em REST;
-- Utilizar Docker ou Kubernetes para subir a stack toda;
 - Disponibilizar os códigos no GitHub, e instruções para rodar localmente o projeto;
