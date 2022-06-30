@@ -1,0 +1,156 @@
+-- CREATE DATABASE KEPHA_STORE OWNER = "postgres";
+-- CREATE TABLE t_customers(
+--   id BIGSERIAL NOT NULL,
+--   created_at TIMESTAMP NOT NULL,
+--   modified_at TIMESTAMP,
+--   first_name VARCHAR(255) NOT NULL,
+--   last_name VARCHAR(255) NOT NULL,
+--   phone VARCHAR(12) NOT NULL,
+--   email VARCHAR(255) NOT NULL,
+--   CONSTRAINT customer_pk PRIMARY KEY(id)
+-- );
+
+-- CREATE TABLE t_payments(
+--   id BIGSERIAL NOT NULL,
+--   created_at TIMESTAMP NOT NULL,
+--   modified_at TIMESTAMP,
+--   amount DECIMAL(10, 2) NOT NULL,
+--   status VARCHAR(20) NOT NULL,
+--   CONSTRAINT payment_pk PRIMARY KEY(id)
+-- );
+
+-- CREATE TABLE t_products(
+--   id BIGSERIAL NOT NULL,
+--   created_at TIMESTAMP NOT NULL,
+--   modified_at TIMESTAMP,
+--   name VARCHAR(255) NOT NULL,
+--   description VARCHAR(255) NOT NULL,
+--   price DECIMAL(10, 2) NOT NULL,
+--   CONSTRAINT product_pk PRIMARY KEY(id)
+-- );
+
+-- CREATE TABLE t_carts(
+--   id BIGSERIAL NOT NULL,
+--   created_at TIMESTAMP NOT NULL,
+--   modified_at TIMESTAMP,
+--   customer_id BIGINT,
+--   status VARCHAR(10) NOT NULL,
+--   PRIMARY KEY(id),
+--   CONSTRAINT cart_pk FOREIGN KEY(customer_id) REFERENCES t_customers(id)
+-- );
+
+-- CREATE TABLE t_orders(
+--   id BIGSERIAL NOT NULL,
+--   created_at TIMESTAMP NOT NULL,
+--   modified_at TIMESTAMP,
+--   zipcode VARCHAR,
+--   street VARCHAR(255) NOT NULL,
+--   numberEstablishment INTEGER,
+--   district VARCHAR(255) NOT NULL,
+--   uf VARCHAR(2) NOT NULL,
+--   city VARCHAR(255) NOT NULL,
+--   country VARCHAR(2) Not null,
+--   status VARCHAR(20) NOT NULL,
+--   total_price DECIMAL(10, 2) NOT NULL,
+--   cart_id BIGINT,
+--   payment_id BIGINT,
+--   PRIMARY KEY(id),
+--   CONSTRAINT orders_uk UNIQUE (payment_id),
+--   CONSTRAINT order_pk FOREIGN KEY(payment_id) REFERENCES t_payments(id),
+--   CONSTRAINT order_pk1 FOREIGN KEY(cart_id) REFERENCES t_carts(id)
+-- );
+
+-- CREATE TABLE t_order_items(
+--   id BIGSERIAL NOT NULL,
+--   created_at TIMESTAMP NOT NULL,
+--   modified_at TIMESTAMP,
+--   quantity BIGINT NOT NULL,
+--   order_id BIGINT,
+--   product_id BIGINT,
+--   PRIMARY KEY(id),
+--   CONSTRAINT order_item_pk FOREIGN KEY (product_id) REFERENCES t_products(id),
+--   CONSTRAINT order_item_pk1 FOREIGN KEY (order_id) REFERENCES t_orders(id)
+-- );
+
+-- INSERT INTO
+--   t_customers (
+--     id,
+--     first_name,
+--     last_name,
+--     phone,
+--     email)
+-- VALUES
+--   (
+--     1,
+--     'John',
+--     'Kelvys',
+--     '9911111112',
+--     'progjohn@outlook.com',
+--   );
+
+-- INSERT INTO
+--   t_payments
+-- VALUES
+--   (
+--     1,
+--     current_timestamp,
+--     current_timestamp,
+--     250,
+--     'PENDING',
+--     'PIX'
+--   );
+
+-- INSERT INTO
+--   t_products
+-- VALUES
+--   (
+--     1,
+--     current_timestamp,
+--     current_timestamp,
+--     'Teclado de notebook para jogadores',
+--     'Teclado gamer',
+--     250
+--   );
+
+-- INSERT INTO
+--   t_carts
+-- VALUES
+--   (
+--     1,
+--     current_timestamp,
+--     current_timestamp,
+--     'CONFIRMED',
+--     1
+--   );
+
+-- INSERT INTO
+--   t_orders
+-- VALUES
+--   (
+--     1,
+--     current_timestamp,
+--     current_timestamp,
+--     'Caxias',
+--     'BR',
+--     'Ponte',
+--     464,
+--     'Rua São Vicente de Paula',
+--     'MA',
+--     65609440,
+--     300,
+--     'WAITING',
+--     1,
+--     1
+--   );
+
+-- INSERT INTO
+--   t_order_items
+-- VALUES
+--   (
+--     1,
+--     current_timestamp,
+--     current_timestamp,
+--     100,
+--     1,
+--     1
+--   );
