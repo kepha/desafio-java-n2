@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+  app:
+    container_name: kepha-store
+    build:
+      context: .
+      dockerfile: src/main/docker/dockerfile.jvm
+    ports:
+      - "8080:8080" 
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - quarkus
+  db:
+    image: postgres:14.4
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ads
+      - POSTGRES_DB=quarkus
+      
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 6
+    ports:
+      - "5431:5432" 
+    networks:
+      - quarkus
+  keycloak:
+    image: jboss/keycloak:16.1.1
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+    ports:
+      - "8180:8080"
+networks:
+  quarkus:
+    driver: bridge
+      
+
