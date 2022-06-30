@@ -54,8 +54,11 @@ Para saber mais sobre o serviço Cron e Quartz, acesse: https://quarkus.io/guide
 Com o terminal aberto na pasta do projeto e com o docker executando, digite o seguinte comando:
 
 ```bash
+    ./mvnw clean package
+```
+
+```bash
     docker-compose up
 ```
 Assim, serão gerados as imagens do PostgreSQL, Kaycloak, e da aplicação, e o container da aplicação.
 Para realizar os testes da API, acesse: http://localhost:8080/q/swagger-ui/
-
